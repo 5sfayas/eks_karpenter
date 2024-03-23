@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-nginx-service
+spec:
+  selector:
+    app: webapp
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80 # deployment port
+    protocol: TCP

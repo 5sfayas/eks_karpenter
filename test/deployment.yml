@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-nginx-python
+  labels:
+    tier:  front-end 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: 067268487926.dkr.ecr.us-east-1.amazonaws.com/eks-test-cluster-test-1-stage:3 # Replace with your ECR details
+        ports:
+        - containerPort: 80
+        workingDir: /app
+        resources:
+          requests:
+            cpu: "2"
+            memory: 4Gi
